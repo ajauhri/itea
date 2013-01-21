@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+body{
+	width:70%;
+	position:relative;
+	left:15%;
+}
+div#header{
+	background-color:red;
+	color:white;
+}
+div#header h1{
+	border-bottom:1px solid white;
+	width:20%;
+}
+div#header h1, div#header h2{
+	margin: 0;
+	padding: 0.5em 0;
+}
+div#navbar{
+	display:block;
+	background-color:blue;
+}
+.hidden{
+	display:none;
+}
+a, a:hover{
+	text-decoration:none;
+	color:#fff;
+	background-color:#69f;
+}
+a:hover{
+	background-color:#ccc;
+}
+td{
+	background-color:#ffc;
+}
+td#message{
+	background-color:#fff;
+}
+p.alert{
+	background-color:#ffc;
+	font-weight:bold;
+}

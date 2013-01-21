@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Performance" whenNoDataType="AllSectionsNoDetail">
+	
+	<field name="subject" class="java.lang.String"/>
+	<field name="tot" class="java.lang.String"/>
+	<field name="max" class="java.lang.String"/>
+	<field name="min" class="java.lang.String"/>
+	<field name="avg" class="java.lang.String"/>
+	
+		
+	<title>		
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20"/>
+				<text>
+					<![CDATA[Performance Report]]>
+				</text>
+			</staticText>
+		</band>	
+	</title>
+		
+	<columnHeader>
+		<band height="45">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="20"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[SUBJECT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="120" height="20"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[TOT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="0" width="120" height="20"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[MAX MARKS SCORED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="0" width="80" height="20"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[MIN MARKS SCORED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="0" width="80" height="20"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[AVG MARKS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="39" width="555" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="20"/>
+				<textFieldExpression class="java.lang.String">
+					<![CDATA[$F{subject}]]>
+				</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="120" height="20"/>
+				<textFieldExpression class="java.lang.String">
+					<![CDATA[$F{tot}]]>
+				</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="0" width="120" height="20"/>
+				<textFieldExpression class="java.lang.String">
+					<![CDATA[$F{max}]]>
+				</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="0" width="80" height="20"/>
+				<textFieldExpression class="java.lang.String">
+					<![CDATA[$F{min}]]>
+				</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="80" height="20"/>
+				<textFieldExpression class="java.lang.String">
+					<![CDATA[$F{avg}]]>
+				</textFieldExpression>
+			</textField>
+			
+		</band>
+	</detail>
+	
+	
+	<pageFooter>
+		<band height="120">
+			<staticText>
+				<reportElement x="0" y="100" width="200" height="20"/>
+				<text>
+					<![CDATA[Page Footer]]>
+				</text>
+			</staticText>
+		</band>
+	</pageFooter>
+	
+	</jasperReport>

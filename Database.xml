@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="Database.xsl" ?>
+<database xmlns="http://www.pietons.com/ITEA" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.pietons.com/ITEA Database.xsd ">
+	<table name="student">
+		<field type="pk" data="varchar(10)">gr_no</field>
+		<field data="integer">roll_no</field>
+		<field type="fk" data="integer">class_id</field>
+		<field data="xml">personal_details</field>
+		<field data="integer">year_of_admission</field>
+		<field data="xml">feedbacks</field>
+	</table>
+	<table name="faculty">
+		<field type="pk" data="varchar(10)">gr_no</field>
+		<field type="fk" data="integer">branch_id</field>
+		<field data="integer" constraint="0 - Internal Faculty, 1 - Visiting Faculty, 2 - H.O.D, 3 - Dean">fac_type</field>
+		<field data="xml">personal_details</field>
+		<field data="xml">preferences</field>
+		<field data="integer">year_of_joining</field>
+		<field data="xml">feedbacks</field>
+	</table>
+	<table name="course">
+		<field type="pk" data="integer (identity)">id</field>
+		<field data="varchar(30)">name</field>
+		<field data="integer">duration</field>
+	</table>
+	<table name="branch">
+		<field type="pk" data="integer (identity)">id</field>
+		<field type="fk" data="integer">course_id</field>
+		<field data="varchar(30)">name</field>
+		<field data="varchar(10)">hod</field>
+	</table>
+	<table name="class">
+		<field type="pk" data="integer (identity)">id</field>
+		<field type="fk" data="integer">branch_id</field>
+		<field data="integer">session</field>
+	</table>
+	<table name="subject">
+		<field type="pk" data="integer (identity)">id</field>
+		<field type="fk" data="integer">class_id</field>
+		<field data="varchar(30)">name</field>
+		<field data="integer">lectures_held</field>
+		<field data="integer" constraint="0 - No longer valid, but maintained for Transcripts, 1 - Valid">valid</field>
+	</table>
+	<table name="resources">
+		<field type="pk" data="integer (identity)">id</field>
+		<field type="fk" data="integer">subject_id</field>
+		<field data="varchar(30)">title</field>
+		<field data="varchar(3000)">description</field>
+		<field data="varchar(100)">filename</field>
+		<field data="varchar(100)">cl_filename</field>
+		<field data="xml">date</field>
+	</table>
+	<table name="examination">
+		<field type="pk" data="integer (identity)">id</field>
+		<field type="fk" data="integer">subject_id</field>
+		<field data="xml">date</field>
+		<field data="xml">time</field>
+		<field data="integer">duration</field>
+	</table>
+	<table name="marks">
+		<field type="p/fk" data="varchar(10)">student_id</field>
+		<field type="k\fk" data="integer">examination_id</field>
+		<field data="real">marks</field>
+	</table>
+	<table name="infrastructure">
+		<field type="pk" data="integer (identity)">id</field>
+		<field data="integer" constraint="0 - Room, 1 - Lab">infra_type</field>
+		<field data="integer">capacity</field>
+		<field data="varchar(30)">name</field>
+	</table>
+	<table name="users">
+		<field type="pk" default="gr_no" data="varchar(30)">username</field>
+		<field default="dob" data="varchar(30)">password</field>
+		<field data="varchar(30)" constraint="student, faculty, dean, hod, admin">user_type</field>
+		<field type="fk" data="varchar(10)">gr_no</field>
+		<field data="integer">theme</field>
+		<field data="integer" constraint="0 - Defaults, 1 - Changed By User">changed</field>
+	</table>
+	<table name="messages">
+		<field type="pk" data="integer (identity)">id</field>
+		<field data="varchar(30)">sender</field>
+		<field data="integer" constraint="0 - Normal, 1 - Alert, 2 - Faculty Feedback, 3 - Student Feedback">msg_type</field>
+		<field data="varchar(30)">recipient</field>
+		<field data="integer" constraint="0 - Individual Student/Faculty, 1 - Class-wide Students, 2 - Branch-wide Students, 3 - Branch-wide Faculty, 4 - Course-wide Students, 5 - All Students, 6 - All Faculty, 7 - Entire College, 8 - Administrator">rec_type</field>
+		<field data="xml">date</field>
+		<field data="varchar(100)">subject</field>
+		<field data="for users - varchar(1000); actually - varchar(3000); to account for escaping the text">content</field>
+		<field data="integer" constraint="0 - Unread, 1 - Read by Individual Recipient">msg_read</field>
+	</table>
+	<table name="attendance">
+		<field type="p/fk" data="varchar(10)">student_id</field>
+		<field type="k\fk" data="integer">subject_id</field>
+		<field data="integer">attendance</field>
+	</table>
+	<table name="attendance_marked">
+		<field type="fk" data="integer">subject_id</field>
+		<field data="xml">date</field>
+		<field data="integer">slot</field>
+	</table>
+	<table name="allocation">
+		<field type="pk|fk" data="integer">class_id</field>
+		<field data="xml">schedule</field>
+	</table>
+	
+	<xml name="personal_details">
+		<element name="name" cardinality="1">
+			<element name="fname" cardinality="1" content="true" />
+			<element name="mname" cardinality="1" content="true" />
+			<element name="lname" cardinality="1" content="true" />
+		</element>
+		<element name="address" cardinality="1">
+			<element name="house_no" cardinality="1" content="true" />
+			<element name="street" cardinality="1" content="true" />
+			<element name="city" cardinality="1" content="true" />
+			<element name="pincode" cardinality="1" content="true" />
+			<element name="state" cardinality="1" content="true" />
+		</element>
+		<element name="contact_details" cardinality="1">
+			<element name="phone_no" cardinality="1" content="true" />
+			<element name="email" cardinality="1" content="true" />
+		</element>
+		<element name="dob" cardinality="1">
+			<element name="dd" cardinality="1" content="true" />
+			<element name="mm" cardinality="1" content="true" />
+			<element name="yyyy" cardinality="1" content="true" />
+		</element>
+	</xml>
+	<xml name="schedule">
+		<element name="day" cardinality="*" attribute="d_id">
+			<element name="slot" cardinality="*" attribute="no">
+				<element name="subject_id" cardinality="1" content="true" />
+				<element name="teacher_id" cardinality="1" content="true" />
+				<element name="infra_id" cardinality="1" content="true" />
+			</element>
+		</element>
+	</xml>
+	<xml name="preferences">
+		<element name="day" cardinality="*" attribute="d_id">
+			<element name="slot" cardinality="*" attribute="no" />
+		</element>
+	</xml>
+	<xml name="feedbacks">
+		<element name="feedback" cardinality="*" content="true" attribute="id (identity)" />
+	</xml>
+	<xml name="date">
+		<element name="dd" cardinality="1" content="true" />
+		<element name="mm" cardinality="1" content="true" />
+		<element name="yyyy" cardinality="1" content="true" />
+	</xml>
+	<xml name="time">
+		<element name="hh" cardinality="1" content="true" />
+		<element name="mm" cardinality="1" content="true" />
+		<element name="ss" cardinality="1" content="true" />
+	</xml>
+</database>

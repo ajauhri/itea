@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.pietons.com/ITEA"
+	xmlns:tns="http://www.pietons.com/ITEA" elementFormDefault="qualified">
+	<complexType name="fieldType" mixed="true">
+		<attribute name="type" use="optional">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="pk" />
+					<enumeration value="fk" />
+					<enumeration value="p/fk" />
+					<enumeration value="k\fk" />
+					<enumeration value="pk|fk" />
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="data" use="required" type="string" />
+		<attribute name="default" use="optional" type="string" />
+		<attribute name="constraint" use="optional" type="string" />
+	</complexType>
+	<complexType name="tableType">
+		<sequence>
+			<element name="field" type="tns:fieldType" minOccurs="1"
+				maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" type="string" use="required" />
+	</complexType>
+	<complexType name="elementType" mixed="true">
+		<sequence>
+			<element name="element" type="tns:elementType" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" use="required" type="string" />
+		<attribute name="cardinality" use="required">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="1" />
+					<enumeration value="*" />
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="attribute" type="string" use="optional" />
+		<attribute name="content" use="optional">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="true" />
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<complexType name="xmlType">
+		<sequence>
+			<element name="element" type="tns:elementType" minOccurs="1"
+				maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" />
+	</complexType>
+	<element name="database">
+		<complexType>
+			<sequence>
+				<element name="table" type="tns:tableType" minOccurs="0"
+					maxOccurs="unbounded" />
+				<element name="xml" type="tns:xmlType" minOccurs="0"
+					maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

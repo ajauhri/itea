@@ -1,0 +1,111 @@
+/* Global Styles */
+body {
+	font: 11px Arial, Helvetica, sans-serif;
+	margin: 0px;
+	color:#000000;
+	background-color:#DDBB66;
+/*	position:relative;
+	left:15%;
+	width:70%; */
+	min-height:700px;
+}
+
+td, th {
+	font: 11px Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+th {
+	font-weight: bold;
+	border-bottom:1px solid #333333;
+}
+
+a{
+	color: #AA0000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+/* ID Styles */
+#navigation a, .message a {
+	font: 10px Arial, Helvetica, sans-serif;
+	color: #000000;
+	text-decoration: none;
+	letter-spacing: .1em;
+	line-height: 16px;
+	display: block;
+	padding: 0px 10px;
+}
+
+#navigation td:first-child {
+	background-color:#AA0000;
+}
+#navigation td:first-child+td {
+	background-color:#FFCC00;
+}
+#navigation td:first-child+td+td {
+	background-color:#BB6600;
+}
+#navigation td:first-child+td+td+td {
+	background-color:#CCCC00;
+}
+#navigation td:first-child+td+td+td+td {
+	background-color:#885555;
+}
+#navigation td:first-child+td+td+td+td+td {
+	background-color:#777777;
+}
+#navigation td:first-child+td+td+td+td+td+td {
+	background-color:#CC9933;
+}
+#navigation td:first-child+td+td+td+td+td+td+td {
+	background-color:#669999;
+}
+#navigation td:first-child+td+td+td+td+td+td+td+td {
+	background-color:#444444;
+}
+#navigation td:first-child+td+td+td+td+td+td+td+td+td {
+	background-color:#CCCC66;
+}
+
+#navigation a:hover, .chart td:hover, .message a:hover{
+	color: #000000;
+	background: #FFFFCC;
+	cursor: pointer;
+}
+
+/* Class Styles */
+.logo {
+	font: 24px Times New Roman, Times, serif;
+	letter-spacing: .3em;
+	line-height: 26px;
+	color: #886633;
+}
+
+.tagline {
+	font: 11px Arial, Helvetica, sans-serif;
+	color: #886633;
+	line-height: 16px;
+}
+
+.navText {
+	font: 10px Arial, Helvetica, sans-serif;
+	color: #000000;
+	letter-spacing: .1em;
+	line-height: 16px;
+}
+
+.header{
+	background-color: #CCAA66;
+}
+.menu{
+	background-color: #997744;
+}
+.error{
+	display:none;
+	color:red;
+}
